@@ -28,7 +28,7 @@ These are practical targets for a home-lab build like this. The goal is stabilit
 ### CPU
 
 - Recommended: modern Intel Core i5 / i7, Intel Xeon E-series, or AMD Ryzen 5 / 7 class CPU
-- Features to look for:
+- Good features to look for:
   - Hardware virtualization support
   - IOMMU / VT-d or AMD-Vi support
   - Enough cores for Proxmox plus multiple VM/CT workloads
@@ -58,14 +58,14 @@ If you want a build that is close to this lab without buying more hardware than 
 
 - CPU with at least 6 modern cores and hardware virtualization support
 - `64 GB` RAM if you want the whole stack to feel comfortable
-- 1 boot SSD NVMe in the `500 GB` to `1 TB` range
-  - Also for pool for VM/CT storage
-- 2 or more HDDs with a minimum storage of `2 TB+` each if you want a practical media and RAID for redundancy
-- A GPU only if you need transcoding or another workload that can use it (plex or any media player)
+- 1 boot NVMe in the `500 GB` to `1 TB` range
+- 1 SSD or NVMe pool for VM/CT storage
+- 2 or more HDDs at `2 TB+` each if you want a practical media and backup starting point
+- A GPU only if you need transcoding or another workload that can use it
 
 If your storage plan changes, scale the bulk disks up instead of assuming one fixed size. The guide cares about the role of the disks, not forcing a specific capacity.
 
-### GPU (Optional)
+### GPU
 
 - Optional unless you need media transcoding or a specific workload
 - If you want hardware transcoding for Jellyfin:
@@ -77,11 +77,9 @@ If your storage plan changes, scale the bulk disks up instead of assuming one fi
   - NVIDIA T400 / T600 for compact transcoding setups
   - NVIDIA A2000 if you want more headroom and low-profile support
 
--Use a gaming or another pc over local LAN with a good GPU for local LLM hosting with ollama.
-
 ### Network
 
-- Use a wired gigabit
+- Use a wired gigabit or better NIC
 - A dedicated management bridge is enough for most home labs
 - Separate storage or backup networking is optional, not required
 
@@ -160,3 +158,20 @@ Record the final physical layout so the machine can be rebuilt later without tri
 - [ ] HDD mounting points
 - [ ] Power/data cable routing
 - [ ] Final cable management
+
+### Suggested photo set
+
+If you want a reproducible build log, capture these images:
+
+- Front of chassis with drive bays visible
+- Rear of chassis with networking and power visible
+- Open chassis showing boot disk and bulk data disk locations
+- Any controller or adapter card that is being passed through
+- Label close-up for any disk or cable you plan to reference later
+
+## Rebuild notes
+
+- Keep a labeled list of drive serials if possible.
+- Write down which disk is safe to wipe and which disk is the host boot device.
+- If the machine has a removable storage controller or expansion card, document where it lives physically before moving to virtualization setup.
+- The physical build phase is done at the server with a keyboard and screen attached.
