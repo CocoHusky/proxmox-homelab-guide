@@ -11,18 +11,6 @@ If the diagram below does not render in your viewer, read it as a straight verti
 
 Hardware -> BIOS -> Proxmox -> Storage VM / TrueNAS -> Shared storage -> Core services -> Support services -> Optional services -> Remote access last
 
-```mermaid
-flowchart TB
-  HW["Hardware"] --> BIOS["BIOS"]
-  BIOS --> PVE["Proxmox"]
-  PVE --> TRUENAS["Storage VM / TrueNAS"]
-  TRUENAS --> SHARES["Shared storage"]
-  SHARES --> CORE["Core services<br/>Immich<br/>Nextcloud AIO<br/>Uptime Kuma + Telegram alerts"]
-  CORE --> SUPPORT["Support services<br/>Nginx Proxy Manager<br/>Vaultwarden<br/>Homarr"]
-  SUPPORT --> OPTIONAL["Optional services<br/>Navidrome<br/>Jellyfin<br/>Teslamate<br/>Sandbox VM"]
-  OPTIONAL --> REMOTE["Remote access last<br/>Tailscale"]
-```
-
 ## What matters most
 
 ### Required path
