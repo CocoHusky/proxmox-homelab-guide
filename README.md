@@ -32,21 +32,7 @@ If you are new to this, start with [`docs/00-overview.md`](docs/00-overview.md) 
 
 ## Build Architecture
 
-If the diagram below does not render in your viewer, read it as a straight vertical stack:
-
 Hardware -> BIOS -> Proxmox -> Storage VM / TrueNAS -> Shared storage -> Core services -> Support services -> Optional services -> Remote access last
-
-```mermaid
-flowchart TB
-  HW["Hardware"] --> BIOS["BIOS"]
-  BIOS --> PVE["Proxmox"]
-  PVE --> TRUENAS["Storage VM / TrueNAS"]
-  TRUENAS --> SHARES["Shared storage"]
-  SHARES --> CORE["Core services<br/>Immich<br/>Nextcloud AIO<br/>Uptime Kuma + Telegram alerts"]
-  CORE --> SUPPORT["Support services<br/>Nginx Proxy Manager<br/>Vaultwarden<br/>Homarr"]
-  SUPPORT --> OPTIONAL["Optional services<br/>Navidrome<br/>Jellyfin<br/>Teslamate<br/>Sandbox VM"]
-  OPTIONAL --> REMOTE["Remote access last<br/>Tailscale"]
-```
 
 ## Build tiers
 
@@ -148,11 +134,3 @@ These can wait until the core is stable:
 ├── images/
 └── templates/
 ```
-
-## Notes for a clean rebuild
-
-- Keep live credentials out of Git.
-- Keep private network details in your local notes.
-- Use this repo to reconstruct the layout, order, and command sequence.
-- If a step requires a browser click or GUI action, the doc should say so explicitly.
-- The documented Proxmox baseline was verified on `9.1.6` with kernel `6.17.13-1-pve`; newer compatible versions are fine if the commands and UI labels still match.
