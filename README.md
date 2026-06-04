@@ -3,7 +3,7 @@
 This repository is a rebuild manual for the current Proxmox-based home lab.
 It is organized so a human can follow it in order, from the first boot on a physical screen to the final optional remote-access layer.
 
-Version note: the documented Proxmox baseline was verified on Proxmox VE `9.1.6` with kernel `6.17.13-1-pve`. Treat that as the known-good baseline, not a hard pin. If you are on a newer compatible release, keep following the guide as long as the commands and UI labels still match.
+Version note: the documented Proxmox baseline was verified on Proxmox VE `9.1.5` with kernel `6.17.13-1-pve`. Treat that as the known-good baseline. If you are on a newer compatible release, keep following the guide as long as the commands and UI labels still match.
 
 If you are new to this, start with [`docs/00-overview.md`](docs/00-overview.md) and then follow the numbered steps below in order.
 
