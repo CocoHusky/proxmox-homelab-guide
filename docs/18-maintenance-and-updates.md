@@ -18,18 +18,10 @@ The goal is not full blind automation. The goal is a repeatable maintenance path
 
 Community Scripts is useful for creating many Proxmox LXCs and sometimes gives those LXCs an app-specific update helper.
 
-Use it for:
-
-- Creating common app CTs.
-- Checking whether a Community Scripts-installed CT has an update helper.
-- Running an app-specific update only after checking that app's notes.
-
-Do not treat it as:
-
-- A Proxmox host updater.
-- A TrueNAS updater.
-- A universal Docker Compose updater.
-- A single safe "update everything" button.
+If CT was generated using helper scripts from https://community-scripts.org
+1. Confirm backups are healthy.
+2. Log into the container and run `update`
+3. Continue updating other VM and CT using steps bellow if not created with these helper scripts.
 
 ## Simple monthly flow
 
