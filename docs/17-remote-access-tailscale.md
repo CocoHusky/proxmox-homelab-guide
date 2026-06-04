@@ -87,6 +87,46 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/Proxmo
 
 After the addon helper finishes, verify the CT has a tailnet IP and the service still starts normally.
 
+## Monthly Tailscale checks and updates
+
+Tailscale installed through apt is normally updated with the rest of the operating system packages.
+
+From the Proxmox host, check and update Tailscale in every running apt-based CT:
+
+```bash
+for ctid in $(pct list | awk 'NR > 1 && $2 == "running" {print $1}'); do
+  echo "Checking CT ${ctid}"
+  pct exec "$ctid" -- sh -c '
+    if command -v tailscale >/dev/null 2>&1; then
+      apt-get update &&
+      DEBIAN_FRONTEND=noninteractive apt-get install -y --only-upgrade tailscale &&
+      systemctl is-active tailscaled &&
+      tailscale version
+    fi
+  '
+done
+```
+
+`pct exec` works only with CTs. Update Tailscale inside each VM using that VM's console or SSH session. Do not use generic Linux update commands inside appliance-style VMs such as TrueNAS; use the appliance's supported app or update interface.
+
+Update important subnet routers, exit nodes, or remote-access nodes one at a time so a failed update does not remove every remote path at once.
+
+## Find a service's Tailscale URL
+
+For a CT, check its Tailscale address and Serve configuration from the Proxmox host:
+
+```bash
+pct exec <CTID> -- sh -c 'tailscale status --self; tailscale ip -4; tailscale serve status 2>/dev/null || true'
+```
+
+If Tailscale Serve is configured, `tailscale serve status` prints the HTTPS URL. Otherwise, use the tailnet IP or MagicDNS hostname with the application's port:
+
+```text
+http://<TAILSCALE_IP>:<APP_PORT>
+```
+
+Do not record private IP addresses, tailnet names, authentication keys, or reusable login URLs in a public repository.
+
 ## Suggested rollout order
 
 1. Make the service work on the local network.
