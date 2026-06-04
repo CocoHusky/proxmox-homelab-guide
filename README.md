@@ -3,7 +3,7 @@
 This repository is a rebuild manual for the current Proxmox-based home lab.
 It is organized so a human can follow it in order, from the first boot on a physical screen to the final optional remote-access layer.
 
-Version note: the documented Proxmox baseline was verified on Proxmox VE `9.1.5` with kernel `6.17.13-1-pve`. Treat that as the known-good baseline. If you are on a newer compatible release, keep following the guide as long as the commands and UI labels still match.
+Version note: the documented Proxmox baseline was verified on Proxmox VE `9.1.6` with kernel `6.17.13-1-pve`. Treat that as the known-good baseline, not a hard pin. If you are on a newer compatible release, keep following the guide as long as the commands and UI labels still match.
 
 If you are new to this, start with [`docs/00-overview.md`](docs/00-overview.md) and then follow the numbered steps below in order.
 
@@ -29,10 +29,26 @@ If you are new to this, start with [`docs/00-overview.md`](docs/00-overview.md) 
 | 15. Sandbox VM | [`docs/15-sandbox-vm.md`](docs/15-sandbox-vm.md) | On the Proxmox host and inside the Sandbox VM |
 | 16. Backup and restore | [`docs/16-backup-restore.md`](docs/16-backup-restore.md) | On the Proxmox host and on the backup server |
 | 17. Remote access last | [`docs/17-remote-access-tailscale.md`](docs/17-remote-access-tailscale.md) | Only after the local-network build is working |
+| 18. Maintenance and updates | [`docs/18-maintenance-and-updates.md`](docs/18-maintenance-and-updates.md) | Monthly from your workstation, the Proxmox host, and service web UIs |
 
 ## Build Architecture
 
+If the diagram below does not render in your viewer, read it as a straight vertical stack:
+
 Hardware -> BIOS -> Proxmox -> Storage VM / TrueNAS -> Shared storage -> Core services -> Support services -> Optional services -> Remote access last
+
+```mermaid
+flowchart TB
+  HW["Hardware"] --> BIOS["BIOS"]
+  BIOS --> PVE["Proxmox"]
+  PVE --> TRUENAS["Storage VM / TrueNAS"]
+  TRUENAS --> SHARES["Shared storage"]
+  SHARES --> CORE["Core services<br/>Immich<br/>Nextcloud AIO<br/>Uptime Kuma + Telegram alerts"]
+  CORE --> SUPPORT["Support services<br/>Nginx Proxy Manager<br/>Vaultwarden<br/>Homarr"]
+  SUPPORT --> OPTIONAL["Optional services<br/>Navidrome<br/>Jellyfin<br/>Teslamate<br/>Sandbox VM"]
+  OPTIONAL --> REMOTE["Remote access last<br/>Tailscale"]
+  REMOTE --> MAINT["Maintenance<br/>monthly updates<br/>validation"]
+```
 
 ## Build tiers
 
@@ -130,7 +146,18 @@ These can wait until the core is stable:
 │   ├── 14-teslamate-telemetry-ct.md
 │   ├── 15-sandbox-vm.md
 │   ├── 16-backup-restore.md
-│   └── 17-remote-access-tailscale.md
+│   ├── 17-remote-access-tailscale.md
+│   └── 18-maintenance-and-updates.md
 ├── images/
+├── scripts/
+│   └── proxmox-monthly-maintenance.sh
 └── templates/
 ```
+
+## Notes for a clean rebuild
+
+- Keep live credentials out of Git.
+- Keep private network details in your local notes.
+- Use this repo to reconstruct the layout, order, and command sequence.
+- If a step requires a browser click or GUI action, the doc should say so explicitly.
+- The documented Proxmox baseline was verified on `9.1.6` with kernel `6.17.13-1-pve`; newer compatible versions are fine if the commands and UI labels still match.
