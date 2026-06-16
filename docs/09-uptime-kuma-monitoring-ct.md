@@ -1,4 +1,4 @@
-# 08 - Uptime Kuma Monitoring CT
+# 09 - Uptime Kuma Monitoring CT
 
 ## Purpose
 
@@ -142,4 +142,4 @@ Use the public or browser-facing URL for each service, not an internal container
 
 ## Next step
 
-After monitoring is working, continue to the Password CT in [`./09-vaultwarden-password-ct.md`](./09-vaultwarden-password-ct.md).
+After monitoring is working, continue to the Password CT in [`./10-vaultwarden-password-ct.md`](./10-vaultwarden-password-ct.md).

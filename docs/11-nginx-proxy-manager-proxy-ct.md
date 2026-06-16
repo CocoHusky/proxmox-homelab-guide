@@ -1,4 +1,4 @@
-# 10 - Nginx Proxy Manager Proxy CT
+# 11 - Nginx Proxy Manager Proxy CT
 
 ## Purpose
 
@@ -94,4 +94,4 @@ If you only want LAN access, you can keep this layer simple and skip public cert
 
 ## Next step
 
-After the proxy layer is working, continue to the Dashboard CT in [`./11-homarr-dashboard-ct.md`](./11-homarr-dashboard-ct.md).
+After the proxy layer is working, continue to the Dashboard CT in [`./12-homarr-dashboard-ct.md`](./12-homarr-dashboard-ct.md).

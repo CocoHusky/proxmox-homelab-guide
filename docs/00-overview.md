@@ -82,7 +82,7 @@ If you are rebuilding only the important parts, this is the shortest useful orde
 
 ### Optional path
 
-The first seven steps are infrastructure. Everything from step 8 onward is the actual lab shape.
+Steps 01 through 07 are infrastructure. Everything from step 08 onward is the actual lab shape.
 
 ## How the lab is layered
 
@@ -140,25 +140,26 @@ The first seven steps are infrastructure. Everything from step 8 onward is the a
 
 ## Build sequence
 
-1. Read the overview.
-2. Set up the DNS starter.
-3. Build the hardware.
-4. Configure BIOS.
-5. Install Proxmox.
-6. Build the storage VM.
-7. Mount shared storage.
-8. Set up Nextcloud AIO.
-9. Deploy the Photos CT.
-10. Deploy the Monitoring CT.
-11. Deploy the Password CT.
-12. Deploy the Proxy CT.
-13. Deploy the Dashboard CT.
-14. Deploy the Music CT.
-15. Deploy the Media CT.
-16. Deploy the Telemetry CT.
-17. Deploy the Sandbox VM if you need one.
-18. Set up backup and restore.
-19. Add remote access only after the local build is stable.
+00. Read the overview.
+01. Set up the DNS starter.
+02. Build the hardware.
+03. Configure BIOS and install Proxmox.
+04. Configure IOMMU and passthrough.
+05. Build the storage VM.
+06. Mount shared storage.
+07. Set up Nextcloud AIO.
+08. Deploy the Photos CT.
+09. Deploy the Monitoring CT.
+10. Deploy the Password CT.
+11. Deploy the Proxy CT.
+12. Deploy the Dashboard CT.
+13. Deploy the Music CT.
+14. Deploy the Media CT.
+15. Deploy the Telemetry CT.
+16. Deploy the Sandbox VM if you need one.
+17. Set up backup and restore.
+18. Add remote access only after the local build is stable.
+19. Run maintenance and updates.
 
 ## Where to run things
 

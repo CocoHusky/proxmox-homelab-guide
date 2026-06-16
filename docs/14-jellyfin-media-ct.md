@@ -1,4 +1,4 @@
-# 13 - Jellyfin Media CT
+# 14 - Jellyfin Media CT
 
 ## Purpose
 
@@ -90,4 +90,4 @@ If you do not need transcoding, keep the setup simple and skip GPU passthrough e
 
 ## Next step
 
-After the media service, continue to the Telemetry CT in [`./14-teslamate-telemetry-ct.md`](./14-teslamate-telemetry-ct.md).
+After the media service, continue to the Telemetry CT in [`./15-teslamate-telemetry-ct.md`](./15-teslamate-telemetry-ct.md).

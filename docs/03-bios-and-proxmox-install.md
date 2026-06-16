@@ -1,4 +1,4 @@
-# 02 - BIOS and Proxmox Install
+# 03 - BIOS and Proxmox Install
 
 ## Why this matters
 

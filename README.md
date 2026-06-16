@@ -12,25 +12,25 @@ If you are new to this, start with [`docs/00-overview.md`](docs/00-overview.md) 
 | Step | Read this | Run it here |
 | --- | --- | --- |
 | 0. Overview | [`docs/00-overview.md`](docs/00-overview.md) | Read this first to understand the full architecture |
-| 1. DNS starter | [`docs/00-dns-starter.md`](docs/00-dns-starter.md) | On a small Raspberry Pi and the Tailscale admin console |
-| 2. Physical build | [`docs/01-hardware-and-wiring.md`](docs/01-hardware-and-wiring.md) | In the server chassis with keyboard and screen |
-| 3. BIOS and install | [`docs/02-bios-and-proxmox-install.md`](docs/02-bios-and-proxmox-install.md) | On the physical server console |
-| 4. Virtualization tuning | [`docs/03-iommu-and-passthrough.md`](docs/03-iommu-and-passthrough.md) | On the Proxmox host through the local console or SSH from your Mac |
-| 5. Storage VM | [`docs/04-truenas-vm-setup.md`](docs/04-truenas-vm-setup.md) | On the Proxmox host and in the TrueNAS web UI |
-| 6. Shared storage | [`docs/05-storage-and-shares.md`](docs/05-storage-and-shares.md) | On the Proxmox host and in the TrueNAS shell/UI |
-| 7. Nextcloud AIO setup | [`docs/06-nextcloud-aio-setup.md`](docs/06-nextcloud-aio-setup.md) | On the Proxmox host, then inside the Document VM |
-| 8. Immich Photos CT | [`docs/07-immich-photos-ct.md`](docs/07-immich-photos-ct.md) | On the Proxmox host, then inside the Photos CT |
-| 9. Uptime Kuma monitoring CT | [`docs/08-uptime-kuma-monitoring-ct.md`](docs/08-uptime-kuma-monitoring-ct.md) | On the Proxmox host, then inside the Monitoring CT |
-| 10. Vaultwarden password CT | [`docs/09-vaultwarden-password-ct.md`](docs/09-vaultwarden-password-ct.md) | On the Proxmox host, then inside the Password CT |
-| 11. Nginx Proxy Manager proxy CT | [`docs/10-nginx-proxy-manager-proxy-ct.md`](docs/10-nginx-proxy-manager-proxy-ct.md) | On the Proxmox host, then inside the Proxy CT |
-| 12. Homarr dashboard CT | [`docs/11-homarr-dashboard-ct.md`](docs/11-homarr-dashboard-ct.md) | On the Proxmox host, then inside the Dashboard CT |
-| 13. Navidrome music CT | [`docs/12-navidrome-music-ct.md`](docs/12-navidrome-music-ct.md) | On the Proxmox host, then inside the Music CT |
-| 14. Jellyfin media CT | [`docs/13-jellyfin-media-ct.md`](docs/13-jellyfin-media-ct.md) | On the Proxmox host, then inside the Media CT |
-| 15. Teslamate telemetry CT | [`docs/14-teslamate-telemetry-ct.md`](docs/14-teslamate-telemetry-ct.md) | On the Proxmox host, then inside the Telemetry CT |
-| 16. Sandbox VM | [`docs/15-sandbox-vm.md`](docs/15-sandbox-vm.md) | On the Proxmox host and inside the Sandbox VM |
-| 17. Backup and restore | [`docs/16-backup-restore.md`](docs/16-backup-restore.md) | On the Proxmox host and on the backup server |
-| 18. Remote access last | [`docs/17-remote-access-tailscale.md`](docs/17-remote-access-tailscale.md) | Only after the local-network build is working |
-| 19. Maintenance and updates | [`docs/18-maintenance-and-updates.md`](docs/18-maintenance-and-updates.md) | Monthly from your workstation, the Proxmox host, and service web UIs |
+| 1. DNS starter | [`docs/01-dns-starter.md`](docs/01-dns-starter.md) | On a small Raspberry Pi and the Tailscale admin console |
+| 2. Physical build | [`docs/02-hardware-and-wiring.md`](docs/02-hardware-and-wiring.md) | In the server chassis with keyboard and screen |
+| 3. BIOS and install | [`docs/03-bios-and-proxmox-install.md`](docs/03-bios-and-proxmox-install.md) | On the physical server console |
+| 4. Virtualization tuning | [`docs/04-iommu-and-passthrough.md`](docs/04-iommu-and-passthrough.md) | On the Proxmox host through the local console or SSH from your Mac |
+| 5. Storage VM | [`docs/05-truenas-vm-setup.md`](docs/05-truenas-vm-setup.md) | On the Proxmox host and in the TrueNAS web UI |
+| 6. Shared storage | [`docs/06-storage-and-shares.md`](docs/06-storage-and-shares.md) | On the Proxmox host and in the TrueNAS shell/UI |
+| 7. Nextcloud AIO setup | [`docs/07-nextcloud-aio-setup.md`](docs/07-nextcloud-aio-setup.md) | On the Proxmox host, then inside the Document VM |
+| 8. Immich Photos CT | [`docs/08-immich-photos-ct.md`](docs/08-immich-photos-ct.md) | On the Proxmox host, then inside the Photos CT |
+| 9. Uptime Kuma monitoring CT | [`docs/09-uptime-kuma-monitoring-ct.md`](docs/09-uptime-kuma-monitoring-ct.md) | On the Proxmox host, then inside the Monitoring CT |
+| 10. Vaultwarden password CT | [`docs/10-vaultwarden-password-ct.md`](docs/10-vaultwarden-password-ct.md) | On the Proxmox host, then inside the Password CT |
+| 11. Nginx Proxy Manager proxy CT | [`docs/11-nginx-proxy-manager-proxy-ct.md`](docs/11-nginx-proxy-manager-proxy-ct.md) | On the Proxmox host, then inside the Proxy CT |
+| 12. Homarr dashboard CT | [`docs/12-homarr-dashboard-ct.md`](docs/12-homarr-dashboard-ct.md) | On the Proxmox host, then inside the Dashboard CT |
+| 13. Navidrome music CT | [`docs/13-navidrome-music-ct.md`](docs/13-navidrome-music-ct.md) | On the Proxmox host, then inside the Music CT |
+| 14. Jellyfin media CT | [`docs/14-jellyfin-media-ct.md`](docs/14-jellyfin-media-ct.md) | On the Proxmox host, then inside the Media CT |
+| 15. Teslamate telemetry CT | [`docs/15-teslamate-telemetry-ct.md`](docs/15-teslamate-telemetry-ct.md) | On the Proxmox host, then inside the Telemetry CT |
+| 16. Sandbox VM | [`docs/16-sandbox-vm.md`](docs/16-sandbox-vm.md) | On the Proxmox host and inside the Sandbox VM |
+| 17. Backup and restore | [`docs/17-backup-restore.md`](docs/17-backup-restore.md) | On the Proxmox host and on the backup server |
+| 18. Remote access last | [`docs/18-remote-access-tailscale.md`](docs/18-remote-access-tailscale.md) | Only after the local-network build is working |
+| 19. Maintenance and updates | [`docs/19-maintenance-and-updates.md`](docs/19-maintenance-and-updates.md) | Monthly from your workstation, the Proxmox host, and service web UIs |
 
 ## Build Architecture
 
@@ -165,26 +165,26 @@ These can wait until the core is stable:
 .
 ├── README.md
 ├── docs/
-│   ├── 00-dns-starter.md
 │   ├── 00-overview.md
-│   ├── 01-hardware-and-wiring.md
-│   ├── 02-bios-and-proxmox-install.md
-│   ├── 03-iommu-and-passthrough.md
-│   ├── 04-truenas-vm-setup.md
-│   ├── 05-storage-and-shares.md
-│   ├── 06-nextcloud-aio-setup.md
-│   ├── 07-immich-photos-ct.md
-│   ├── 08-uptime-kuma-monitoring-ct.md
-│   ├── 09-vaultwarden-password-ct.md
-│   ├── 10-nginx-proxy-manager-proxy-ct.md
-│   ├── 11-homarr-dashboard-ct.md
-│   ├── 12-navidrome-music-ct.md
-│   ├── 13-jellyfin-media-ct.md
-│   ├── 14-teslamate-telemetry-ct.md
-│   ├── 15-sandbox-vm.md
-│   ├── 16-backup-restore.md
-│   ├── 17-remote-access-tailscale.md
-│   └── 18-maintenance-and-updates.md
+│   ├── 01-dns-starter.md
+│   ├── 02-hardware-and-wiring.md
+│   ├── 03-bios-and-proxmox-install.md
+│   ├── 04-iommu-and-passthrough.md
+│   ├── 05-truenas-vm-setup.md
+│   ├── 06-storage-and-shares.md
+│   ├── 07-nextcloud-aio-setup.md
+│   ├── 08-immich-photos-ct.md
+│   ├── 09-uptime-kuma-monitoring-ct.md
+│   ├── 10-vaultwarden-password-ct.md
+│   ├── 11-nginx-proxy-manager-proxy-ct.md
+│   ├── 12-homarr-dashboard-ct.md
+│   ├── 13-navidrome-music-ct.md
+│   ├── 14-jellyfin-media-ct.md
+│   ├── 15-teslamate-telemetry-ct.md
+│   ├── 16-sandbox-vm.md
+│   ├── 17-backup-restore.md
+│   ├── 18-remote-access-tailscale.md
+│   └── 19-maintenance-and-updates.md
 ├── images/
 ├── scripts/
 │   └── proxmox-monthly-maintenance.sh

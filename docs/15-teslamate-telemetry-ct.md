@@ -1,4 +1,4 @@
-# 14 - Teslamate Telemetry CT
+# 15 - Teslamate Telemetry CT
 
 ## Purpose
 
@@ -71,4 +71,4 @@ docker compose version
 
 ## Next step
 
-After telemetry, continue to the Sandbox VM in [`./15-sandbox-vm.md`](./15-sandbox-vm.md).
+After telemetry, continue to the Sandbox VM in [`./16-sandbox-vm.md`](./16-sandbox-vm.md).

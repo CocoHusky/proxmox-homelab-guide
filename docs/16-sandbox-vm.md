@@ -1,4 +1,4 @@
-# 15 - Sandbox VM
+# 16 - Sandbox VM
 
 ## Purpose
 
@@ -80,4 +80,4 @@ If you do not know the core count yet, choose a small starting value that matche
 
 ## Next step
 
-After the Sandbox VM, move on to backup and restore in [`./16-backup-restore.md`](./16-backup-restore.md).
+After the Sandbox VM, move on to backup and restore in [`./17-backup-restore.md`](./17-backup-restore.md).

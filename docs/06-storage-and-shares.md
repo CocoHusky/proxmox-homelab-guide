@@ -1,4 +1,4 @@
-# 05 - Storage Pools, Shares, and Proxmox Mounts
+# 06 - Storage Pools, Shares, and Proxmox Mounts
 
 ## Goal
 
@@ -172,4 +172,4 @@ For a friend following the guide, the decision tree is:
 
 ## Next step
 
-After SMB/NFS and Proxmox mount are validated, continue with the Nextcloud AIO runbook in [`./06-nextcloud-aio-setup.md`](./06-nextcloud-aio-setup.md).
+After SMB/NFS and Proxmox mount are validated, continue with the Nextcloud AIO runbook in [`./07-nextcloud-aio-setup.md`](./07-nextcloud-aio-setup.md).

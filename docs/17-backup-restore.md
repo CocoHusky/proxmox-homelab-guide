@@ -1,4 +1,4 @@
-# 16 - Backup and Restore
+# 17 - Backup and Restore
 
 ## Purpose
 
@@ -88,4 +88,4 @@ pct restore <TEST_CTID> <BACKUP_FILE>
 
 ## Next step
 
-After backup and restore are documented, continue to remote access in [`./17-remote-access-tailscale.md`](./17-remote-access-tailscale.md).
+After backup and restore are documented, continue to remote access in [`./18-remote-access-tailscale.md`](./18-remote-access-tailscale.md).

@@ -1,4 +1,4 @@
-# 04 - Storage VM Setup
+# 05 - Storage VM Setup
 
 ## Why this matters
 
@@ -142,7 +142,7 @@ zfs list
 
 ## Handoff to storage phase
 
-After the Storage VM installation is stable, continue with SMB/NFS share setup and Proxmox NFS remount workflow in [`./05-storage-and-shares.md`](./05-storage-and-shares.md).
+After the Storage VM installation is stable, continue with SMB/NFS share setup and Proxmox NFS remount workflow in [`./06-storage-and-shares.md`](./06-storage-and-shares.md).
 
 - [ ] SMB/NFS planning complete
 - [ ] NFS export target selected for Proxmox-mounted app data (example: Immich photos)

@@ -1,4 +1,4 @@
-# 11 - Homarr Dashboard CT
+# 12 - Homarr Dashboard CT
 
 ## Purpose
 
@@ -79,4 +79,4 @@ pct exec 104 -- sh -lc 'docker ps -a 2>/dev/null || true; docker compose ls 2>/d
 
 ## Next step
 
-After the dashboard is in place, continue to the Music CT in [`./12-navidrome-music-ct.md`](./12-navidrome-music-ct.md).
+After the dashboard is in place, continue to the Music CT in [`./13-navidrome-music-ct.md`](./13-navidrome-music-ct.md).

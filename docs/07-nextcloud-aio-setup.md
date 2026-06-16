@@ -1,4 +1,4 @@
-# 06 - Nextcloud AIO Setup
+# 07 - Nextcloud AIO Setup
 
 ## Purpose
 
@@ -171,4 +171,4 @@ What to verify:
 
 ## Next step
 
-After Nextcloud is working, move on to the Photos CT runbook in [`./07-immich-photos-ct.md`](./07-immich-photos-ct.md).
+After Nextcloud is working, move on to the Photos CT runbook in [`./08-immich-photos-ct.md`](./08-immich-photos-ct.md).

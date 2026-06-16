@@ -1,4 +1,4 @@
-# 07 - Immich Photos CT
+# 08 - Immich Photos CT
 
 ## Purpose
 
@@ -114,4 +114,4 @@ When Immich is up:
 
 ## Next step
 
-After Immich is working, continue to the Monitoring CT in [`./08-uptime-kuma-monitoring-ct.md`](./08-uptime-kuma-monitoring-ct.md).
+After Immich is working, continue to the Monitoring CT in [`./09-uptime-kuma-monitoring-ct.md`](./09-uptime-kuma-monitoring-ct.md).

@@ -1,4 +1,4 @@
-# 00 - DNS Starter With Pi-hole and Unbound
+# 01 - DNS Starter With Pi-hole and Unbound
 
 ## Goal
 

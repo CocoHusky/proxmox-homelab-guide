@@ -1,4 +1,4 @@
-# 09 - Vaultwarden Password CT
+# 10 - Vaultwarden Password CT
 
 ## Purpose
 
@@ -82,4 +82,4 @@ If you are using the Docker helper or a compose file, keep the environment varia
 
 ## Next step
 
-After Vaultwarden is working, continue to the Proxy CT in [`./10-nginx-proxy-manager-proxy-ct.md`](./10-nginx-proxy-manager-proxy-ct.md).
+After Vaultwarden is working, continue to the Proxy CT in [`./11-nginx-proxy-manager-proxy-ct.md`](./11-nginx-proxy-manager-proxy-ct.md).

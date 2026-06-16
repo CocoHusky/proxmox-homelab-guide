@@ -1,4 +1,4 @@
-# 01 - Hardware and Wiring
+# 02 - Hardware and Wiring
 
 ## Why this matters
 

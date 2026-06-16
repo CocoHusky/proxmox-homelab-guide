@@ -1,4 +1,4 @@
-# 12 - Navidrome Music CT
+# 13 - Navidrome Music CT
 
 ## Purpose
 
@@ -78,4 +78,4 @@ If your music library is read-only, keep it read-only in the mount so an app bug
 
 ## Next step
 
-After the music service, continue to the Media CT in [`./13-jellyfin-media-ct.md`](./13-jellyfin-media-ct.md).
+After the music service, continue to the Media CT in [`./14-jellyfin-media-ct.md`](./14-jellyfin-media-ct.md).
