@@ -8,14 +8,15 @@ It covers the backup mount, backup target, and restore drill so you know the lab
 ## Where to run this
 
 - Proxmox host: create and verify the backup mount.
-- Backup server: expose the export or datastore.
+- Backup server: expose the export or datastore and hold the attached backup disk.
+- TrueNAS: send data-pool snapshot backups to the same backup server when configured.
 - Proxmox host and target VM/CT: perform restore checks.
 
 ## Current backup shape
 
 - Mount name: `backups`
 - Mount path: `/mnt/pve/backups`
-- Backing server: record privately
+- Backing server: separate backup server with SSH and an attached hard drive
 - Export path: record privately
 - The exact server and export are intentionally not published in this repo.
 
@@ -33,6 +34,7 @@ findmnt | grep '/mnt/pve/backups'
 ```
 
 If the backup server already exists, use the mounted path as your backup target in the Proxmox GUI and keep the job name simple, such as `nightly-backup`.
+Use the same backup server export for TrueNAS snapshot copies or replication targets when you want both hypervisor backups and TrueNAS data-pool backups on the same machine.
 
 ### Suggested backup job shape
 
@@ -48,6 +50,7 @@ If the backup server already exists, use the mounted path as your backup target 
 - TrueNAS configuration
 - Each VM/CT config
 - Each VM/CT data path that is not disposable
+- TrueNAS data-pool snapshots or replication copies
 
 ## Backup check
 

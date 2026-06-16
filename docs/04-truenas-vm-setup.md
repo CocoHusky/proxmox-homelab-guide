@@ -96,13 +96,13 @@ If the machine uses an HBA or SATA controller passthrough, record the controller
 4. Reboot and complete the first-time wizard.
 5. Assign the management IP on your local network.
 6. Confirm the web UI is reachable before you move on.
-7. Create the storage pool from the physical disks you passed through.
-8. Create datasets for the data types you actually use.
+7. Create one storage pool from the physical disks you passed through.
+8. Create datasets inside that pool for the data types you actually use.
 9. Enable NFS and SMB only if you need them for the lab.
 
 ### Suggested datasets
 
-Use simple names that make the layout obvious:
+Use simple names that make the layout obvious. Keep them all inside the same pool:
 
 - `photos`
 - `documents`
