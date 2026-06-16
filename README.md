@@ -67,9 +67,13 @@ flowchart TB
   SHARES --> VIDEO["Video"]:::storage
   SHARES --> MUSIC["Music"]:::storage
 
-  HYP --> BKSRV["Backup server"]:::backup
-  BKSRV --> BKHW["SSH + attached HDD"]:::backup
-  BKHW --> BKNFS["NFS export for Proxmox snapshots<br/>and TrueNAS data-pool backups"]:::backup
+  subgraph BK["Backup server hardware"]
+    direction TB
+    BKHW["Backup server"]:::backup --> BKOS["SSH + attached HDD"]:::backup --> BKNFS["NFS exports for Proxmox and TrueNAS backups"]:::backup
+  end
+
+  BKNFS -->|NFS backup target| HYP
+  BKNFS -->|NFS backup target| TRUENAS
 
   HYP --> MAINT["Monthly maintenance"]:::maintain --> REMOTE["Remote access last<br/>Tailscale"]:::maintain
 
