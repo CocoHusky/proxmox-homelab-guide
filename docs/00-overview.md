@@ -7,20 +7,52 @@ Use it to understand the order of the build before diving into the phase docs.
 
 ## Build Architecture
 
-If the diagram below does not render in your viewer, read it as a straight vertical stack:
-
-Hardware -> BIOS -> Proxmox -> Storage VM / TrueNAS -> Shared storage -> Core services -> Support services -> Optional services -> Remote access last
+If the diagram below does not render in your viewer, read it as separate hardware tracks:
+the DNS starter is its own Raspberry Pi appliance, and the main lab branches into workloads, storage, backup, and maintenance from the Proxmox host.
 
 ```mermaid
 flowchart TB
-  HW["Hardware"] --> BIOS["BIOS"]
-  BIOS --> PVE["Proxmox"]
-  PVE --> TRUENAS["Storage VM / TrueNAS"]
-  TRUENAS --> SHARES["Shared storage"]
-  SHARES --> CORE["Core services<br/>Immich<br/>Nextcloud AIO<br/>Uptime Kuma + Telegram alerts"]
-  CORE --> SUPPORT["Support services<br/>Nginx Proxy Manager<br/>Vaultwarden<br/>Homarr"]
-  SUPPORT --> OPTIONAL["Optional services<br/>Navidrome<br/>Jellyfin<br/>Teslamate<br/>Sandbox VM"]
-  OPTIONAL --> REMOTE["Remote access last<br/>Tailscale"]
+  subgraph DNS["DNS starter appliance"]
+    direction TB
+    DNSHW["Raspberry Pi Zero 2 W"]:::hardware --> DNSAPP["Pi-hole + Unbound + Tailscale"]:::vmct
+  end
+
+  HW["Main server hardware"]:::hardware --> BIOS["BIOS"]:::bios --> HYP["Hypervisor<br/>Proxmox"]:::hypervisor
+
+  HYP --> CORE["Core workloads"]:::vmct
+  CORE --> SANDBOX["Sandbox VM"]:::vmct
+  CORE --> NC["Nextcloud AIO VM"]:::vmct
+  CORE --> IMMICH["Immich CT"]:::vmct
+
+  HYP --> SUPPORT["Support services"]:::vmct
+  SUPPORT --> NPM["Nginx Proxy Manager CT"]:::vmct
+  SUPPORT --> KUMA["Uptime Kuma CT"]:::vmct
+  SUPPORT --> TESLA["Teslamate CT"]:::vmct
+  SUPPORT --> HOMARR["Homarr CT"]:::vmct
+  SUPPORT --> NAVI["Navidrome CT"]:::vmct
+  SUPPORT --> JELLY["Jellyfin CT"]:::vmct
+
+  HYP --> STORAGE["Storage"]:::storage
+  STORAGE --> TRUENAS["Storage VM<br/>TrueNAS"]:::storage
+  TRUENAS --> SHARES["Shared storage"]:::storage
+  SHARES --> PHOTOS["Photos"]:::storage
+  SHARES --> DOCS["Documents"]:::storage
+  SHARES --> VIDEO["Video"]:::storage
+  SHARES --> MUSIC["Music"]:::storage
+
+  HYP --> BKSRV["Backup server"]:::backup
+  BKSRV --> BKHW["SSH + attached HDD"]:::backup
+  BKHW --> BKNFS["NFS export for Proxmox snapshots<br/>and TrueNAS data-pool backups"]:::backup
+
+  HYP --> MAINT["Monthly maintenance"]:::maintain --> REMOTE["Remote access last<br/>Tailscale"]:::maintain
+
+  classDef hardware fill:#f7f2e8,stroke:#6b5b4b,color:#2f251f,stroke-width:1.5px;
+  classDef bios fill:#efe3c2,stroke:#8b6f2b,color:#2b2110,stroke-width:1.5px;
+  classDef hypervisor fill:#d7ebff,stroke:#3178c6,color:#0d355d,stroke-width:2px;
+  classDef storage fill:#dff4e4,stroke:#4f915a,color:#17361f,stroke-width:1.5px;
+  classDef vmct fill:#f7dff1,stroke:#b45ea5,color:#4c2146,stroke-width:1.5px;
+  classDef backup fill:#e6def7,stroke:#6f5fb8,color:#2d245c,stroke-width:1.5px;
+  classDef maintain fill:#f1f1f1,stroke:#777,color:#202020,stroke-width:1.5px,stroke-dasharray: 4 3;
 ```
 
 ## What matters most
@@ -29,30 +61,32 @@ flowchart TB
 
 If you are rebuilding only the important parts, this is the shortest useful order:
 
-1. Physical hardware and wiring
-2. BIOS virtualization settings
-3. Proxmox host install
-4. Storage VM
-5. Shared storage mounts
-6. Nextcloud AIO
-7. Immich Photos CT
-8. Uptime Kuma monitoring CT
-9. Vaultwarden password CT
-10. Nginx Proxy Manager proxy CT
-11. Homarr dashboard CT
-12. Navidrome music CT
-13. Jellyfin media CT
-14. Teslamate telemetry CT
-15. Sandbox VM
-16. Backup and restore
-17. Remote access last
+1. DNS starter with Pi-hole and Unbound
+2. Physical hardware and wiring
+3. BIOS virtualization settings
+4. Proxmox host install
+5. Storage VM
+6. Shared storage mounts
+7. Nextcloud AIO
+8. Immich Photos CT
+9. Uptime Kuma monitoring CT
+10. Vaultwarden password CT
+11. Nginx Proxy Manager proxy CT
+12. Homarr dashboard CT
+13. Navidrome music CT
+14. Jellyfin media CT
+15. Teslamate telemetry CT
+16. Sandbox VM
+17. Backup and restore
+18. Remote access last
 
 ### Optional path
 
-The first six steps are infrastructure. Everything from step 7 onward is the actual lab shape.
+The first seven steps are infrastructure. Everything from step 8 onward is the actual lab shape.
 
 ## How the lab is layered
 
+- DNS starter gives you a useful first service before the server build.
 - Hardware provides the physical base.
 - BIOS enables virtualization and passthrough.
 - Proxmox hosts the VM/CT layer.
@@ -94,26 +128,37 @@ The first six steps are infrastructure. Everything from step 7 onward is the act
 - Media CT: Jellyfin
 - Vehicle telemetry CT: Teslamate
 
+### Diagram legend
+
+- `hardware`: physical server or appliance
+- `bios`: firmware settings that enable the build
+- `hypervisor`: Proxmox host layer
+- `storage`: storage VM and shared data paths
+- `vmct`: VM and CT workload nodes
+- `backup`: separate backup server and NFS export
+- `maintain`: remote access and monthly maintenance
+
 ## Build sequence
 
 1. Read the overview.
-2. Build the hardware.
-3. Configure BIOS.
-4. Install Proxmox.
-5. Build the storage VM.
-6. Mount shared storage.
-7. Set up Nextcloud AIO.
-8. Deploy the Photos CT.
-9. Deploy the Monitoring CT.
-10. Deploy the Password CT.
-11. Deploy the Proxy CT.
-12. Deploy the Dashboard CT.
-13. Deploy the Music CT.
-14. Deploy the Media CT.
-15. Deploy the Telemetry CT.
-16. Deploy the Sandbox VM if you need one.
-17. Set up backup and restore.
-18. Add remote access only after the local build is stable.
+2. Set up the DNS starter.
+3. Build the hardware.
+4. Configure BIOS.
+5. Install Proxmox.
+6. Build the storage VM.
+7. Mount shared storage.
+8. Set up Nextcloud AIO.
+9. Deploy the Photos CT.
+10. Deploy the Monitoring CT.
+11. Deploy the Password CT.
+12. Deploy the Proxy CT.
+13. Deploy the Dashboard CT.
+14. Deploy the Music CT.
+15. Deploy the Media CT.
+16. Deploy the Telemetry CT.
+17. Deploy the Sandbox VM if you need one.
+18. Set up backup and restore.
+19. Add remote access only after the local build is stable.
 
 ## Where to run things
 

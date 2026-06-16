@@ -23,7 +23,7 @@ This doc is the bridge between the Storage VM and the app VMs/CTs.
   - Used for most VM disks and container root filesystems
 - `backups`
   - NFS mount at `/mnt/pve/backups`
-  - Used as the external backup target
+  - Used as the external backup target on the separate backup server
 
 ## Where to run this
 
@@ -34,12 +34,12 @@ This doc is the bridge between the Storage VM and the app VMs/CTs.
 
 ## Current mount model
 
-The Proxmox host mounts the backup export from the storage side of the lab.
+The Proxmox host mounts the backup export from the separate backup server.
 
 Pattern:
 
 ```text
-storage server -> NFS export -> Proxmox mount at /mnt/pve/backups
+backup server -> NFS export -> Proxmox mount at /mnt/pve/backups
 ```
 
 ## TrueNAS storage notes
@@ -56,12 +56,12 @@ What to record for your own private notes:
 
 Recommended way to structure the pool:
 
-1. Make one top-level pool for the data disks.
-2. Create one dataset per use case.
+1. Make one TrueNAS pool for the data disks.
+2. Create one dataset per use case inside that pool.
 3. Share the dataset, not the entire pool, when you can.
 4. Keep permissions simple until the app actually needs more control.
 
-Example generic layout:
+Example layout inside a single pool:
 
 ```text
 <POOL_NAME>
@@ -75,7 +75,7 @@ Example generic layout:
 Use this pattern when documenting a new NFS mount:
 
 ```bash
-mount -t nfs -o vers=4 <STORAGE_SERVER_IP>:<EXPORT_PATH> /mnt/pve/backups
+mount -t nfs -o vers=4 <BACKUP_SERVER_IP>:<EXPORT_PATH> /mnt/pve/backups
 ```
 
 If you are setting the mount up from scratch on Proxmox, this is the full copy/paste pattern:
@@ -84,7 +84,7 @@ If you are setting the mount up from scratch on Proxmox, this is the full copy/p
 apt update
 apt install -y nfs-common
 mkdir -p /mnt/pve/backups
-pvesm add nfs backups --server <STORAGE_SERVER_IP> --export <EXPORT_PATH> --path /mnt/pve/backups --content backup
+pvesm add nfs backups --server <BACKUP_SERVER_IP> --export <EXPORT_PATH> --path /mnt/pve/backups --content backup
 pvesm status
 findmnt | grep '/mnt/pve/backups'
 ```
@@ -106,7 +106,7 @@ pvesm status
 ## Example fstab entry
 
 ```fstab
-<STORAGE_SERVER_IP>:<EXPORT_PATH>  /mnt/pve/backups  nfs  defaults,vers=4,_netdev  0  0
+<BACKUP_SERVER_IP>:<EXPORT_PATH>  /mnt/pve/backups  nfs  defaults,vers=4,_netdev  0  0
 ```
 
 Then test:
@@ -120,7 +120,7 @@ If you prefer to let Proxmox manage the storage entry instead of fstab, keep the
 
 ## Suggested dataset mapping
 
-Use simple dataset names so the apps are easy to understand later:
+Use simple dataset names so the apps are easy to understand later. Keep them inside the same pool:
 
 - `photos` for Immich
 - `documents` for Nextcloud
@@ -148,7 +148,7 @@ Example:
 
 If Immich runs on Proxmox as a CT or VM-backed containerized app, point its library storage to the mounted path:
 
-- Host path example: `/mnt/pve/backups`
+- Host path example: `/mnt/pve/<DATASET_NAME>`
 - App-visible path example: `/photos`
 
 For Docker Compose-style deployments, this is typically a bind mount from the host path to the container path.
@@ -156,7 +156,7 @@ For Docker Compose-style deployments, this is typically a bind mount from the ho
 For a friend following the guide, the decision tree is:
 
 1. Does the app need persistent files?
-2. Does that data belong on TrueNAS-backed storage?
+2. Does that data belong in an existing TrueNAS dataset?
 3. Is the dataset mounted into the VM or CT?
 4. Is the app reading the shared path and not a throwaway local directory?
 
