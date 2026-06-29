@@ -1,6 +1,6 @@
 # Home Lab Server Build Guide
 
-This repository is a rebuild manual for the current Proxmox-based home lab.
+This repository is a manual to help setup a detailed architecure for a local home lab server.
 It is organized so a human can follow it in order, from a small DNS starter service to the physical server build and final optional remote-access layer.
 
 Version note: the documented Proxmox baseline was verified on Proxmox VE `9.1.6` with kernel `6.17.13-1-pve`. Treat that as the known-good baseline, not a hard pin. If you are on a newer compatible release, keep following the guide as long as the commands and UI labels still match.
